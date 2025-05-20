@@ -1,17 +1,21 @@
 import { Module } from '@nestjs/common';
-import { PasskeyModule } from './passkey.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TokenService } from './Token.service';
+import { PasskeyService } from './app.service';
+import { PasskeyController } from './app.controller';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env', // ✅ loads .env file
+      envFilePath: '.env',
     }),
-    PasskeyModule,
   ],
-  providers: [TokenService]
-
+  controllers: [PasskeyController],
+  providers: [
+    TokenService,
+    PasskeyService,
+    ConfigService, // Add this
+  ],
 })
 export class AppModule {}
