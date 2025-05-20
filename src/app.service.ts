@@ -1,60 +1,48 @@
-import { Injectable } from '@nestjs/common';
-import { PassageFlex } from '@passageidentity/passage-flex-node';
+// src/passage/passage.service.ts
+import { Injectable  } from '@nestjs/common';
+import { TokenService } from './Token.service'
+import axios from 'axios';
 
 @Injectable()
-export class PasskeyService {
-  private passage: PassageFlex;
+export class PasskeyService  {
+  constructor(private tokenService: TokenService) {}
 
-  constructor() {
-    // Initialize Passage client with credentials
-    this.passage = new PassageFlex({
-      appId: process.env.PASSAGE_APP_ID!,   // your Passage App ID
-      apiKey: process.env.PASSAGE_API_KEY!, // your Passage API Key
-    });
-  }
-
-  /**
-   * Starts passkey registration using WebAuthn.
-   * @param externalId - Typically user's email or your internal user ID.
-   * @returns Object with WebAuthn `nonce` to send to frontend.
-   */
-  async createRegisterChallenge(externalId: string) {
-    // Construct the request object with the required properties
-    const request = { 
-      externalId, 
-      passkeyDisplayName: 'User’s Device' // Provide a display name for the passkey
+  private get headers() {
+    return {
+      Authorization: `Bearer ${this.tokenService.getToken()}`,
+      'Content-Type': 'application/json'
     };
-
-    // Call the SDK with the request object
-    const trasactionId = await this.passage.createRegisterTransaction(request);
-
-    // Return the nonce for the browser
-    return { trasactionId };
   }
 
-  /**
-   * Starts passkey authentication using WebAuthn.
-   * @param externalId - The same user ID you used at registration.
-   * @returns Object with WebAuthn `nonce` to send to frontend.
-   */
-  async createAuthenticateChallenge(externalId: string) {
-    // Construct the request object
-    const request = { externalId };
+  async createRegisterTransaction(externalId: string) {
+    const url = `https://{tenant}.{region}.authaction.com/api/v1/passkey-plus/{applicationId}/transaction/register`;
 
-    // Call the SDK with the request object
-    const trasactionId = await this.passage.createAuthenticateTransaction(request);
+    const response = await axios.post(url, {
+      external_id: externalId,
+      passkey_display_name: 'My Device'
+    }, { headers: this.headers });
 
-    // Return the nonce for the browser
-    return { trasactionId };
+    return response.data;
   }
 
-  /**
-   * Verifies the nonce after WebAuthn completes in the browser.
-   * @param nonce - The one-time nonce returned by `register` or `authenticate`.
-   * @returns The `externalId` of the successfully verified user.
-   */
-  async verifyNonce(nonce: string): Promise<string> {
-    const externalId = await this.passage.verifyNonce(nonce);
-    return externalId;
+  async createAuthenticateTransaction(externalId: string) {
+    const url = `https://{tenant}.{region}.authaction.com/api/v1/passkey-plus/{applicationId}/transaction/authenticate`;
+
+    const response = await axios.post(url, {
+      external_id: externalId
+    }, { headers: this.headers });
+
+    return response.data;
+  }
+
+  async verifyNonce(nonce: string) {
+    const url = `https://{tenant}.{region}.authaction.com/api/v1/passkey-plus/{applicationId}/authenticate/verify
+`;
+
+    const response = await axios.post(url, {
+      nonce: nonce
+    }, { headers: this.headers });
+
+    return response.data;
   }
 }
