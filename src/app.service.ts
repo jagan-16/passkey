@@ -11,8 +11,9 @@ export class PasskeyService {
   ) {}
 
   private async getHeaders() {
+    const token = await this.tokenService.getToken(); // Debugging line
     return {
-      Authorization: `Bearer ${await this.tokenService.getToken()}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     };
   }
@@ -33,6 +34,7 @@ export class PasskeyService {
       );
       return response.data;
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException('Failed to create registration transaction');
     }
   }
