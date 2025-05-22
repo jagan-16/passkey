@@ -29,6 +29,13 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
+"@authaction/passkey-plus-sdk@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@authaction/passkey-plus-sdk/-/passkey-plus-sdk-1.0.3.tgz#109394f957fd524c9b7e30a7493bde5a2f4d203d"
+  integrity sha512-LnPLRNPpVYifKr4YjzyvlM4A4ZkgMn9fZZwdtDkPzUlY9BbDRpfNBo27SNlisfrE8R7C+MQIYckq+ultgsbkzQ==
+  dependencies:
+    "@simplewebauthn/browser" "^12.0.0"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.27.1", "@babel/code-frame@^7.8.3":
   version "7.27.1"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.27.1.tgz#200f715e66d52a23b221a9435534a91cc13ad5be"
@@ -1567,13 +1574,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@passageidentity/passage-flex-js@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@passageidentity/passage-flex-js/-/passage-flex-js-1.0.2.tgz#5a181b1d3d48a6ee849bb3e2a250a61d744e9ef8"
-  integrity sha512-IHBqRNB3GYjbJCwfi4C7DBk7I7apulD0nOfvh3g2nPdLGNUjhAVyV16Ca0Ic1yQFlwrGXLxTs/srCj4FbMYWvw==
-  dependencies:
-    "@passageidentity/webauthnutils" "1.4.2"
-
 "@passageidentity/passage-flex-node@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@passageidentity/passage-flex-node/-/passage-flex-node-1.0.2.tgz#a11a3e59cff40d9f0468afcdb5491f3eac9fe7a3"
@@ -1581,13 +1581,6 @@
   dependencies:
     jose "^5.9.6"
     node-fetch "^2.7.0"
-
-"@passageidentity/webauthnutils@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@passageidentity/webauthnutils/-/webauthnutils-1.4.2.tgz#79b5e735f0e329c2bf17e8647fdf8ccce5afcfd1"
-  integrity sha512-iEvPKm8sPLEDtNhBm34PVhTfTb1IIqgBbOOewN8QZZVyKSL+WvNTBFcNYe++sUp4TXUfqKIZ9e34pqpwd+15Mg==
-  dependencies:
-    ua-parser-js "^1.0.35"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -1653,6 +1646,18 @@
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.11.0.tgz#75dce8e972f90bba488e2b0cc677fb233aa357ab"
   integrity sha512-zxnHvoMQVqewTJr/W4pKjF0bMGiKJv1WX7bSrkl46Hg0QjESbzBROWK0Wg4RphzSOS5Jiy7eFimmM3UgMrMZbQ==
+
+"@simplewebauthn/browser@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@simplewebauthn/browser/-/browser-12.0.0.tgz#704a332bc20f89139e3d53201514355063fbc893"
+  integrity sha512-0w6W8qkACycyaRMb2XnHfpA9kkgs5e2Aw2Ul9ObBYmvFBbtzipyWu9u2+WP1wy98chM+GIlQFnPheUbiMBQr8w==
+  dependencies:
+    "@simplewebauthn/types" "^12.0.0"
+
+"@simplewebauthn/types@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@simplewebauthn/types/-/types-12.0.0.tgz#9b2ba09dfd951747f81dde0f77c6e34b7ac7f8a6"
+  integrity sha512-q6y8MkoV8V8jB4zzp18Uyj2I7oFp2/ONL8c3j8uT06AOWu3cIChc1au71QYHrP2b+xDapkGTiv+9lX7xkTlAsA==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -9144,11 +9149,6 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
-
-ua-parser-js@^1.0.35:
-  version "1.0.40"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.40.tgz#ac6aff4fd8ea3e794a6aa743ec9c2fc29e75b675"
-  integrity sha512-z6PJ8Lml+v3ichVojCiB8toQJBuwR42ySM4ezjXIqXK3M0HczmKQ3LF4rhU55PfD99KEEXQG6yb7iOMyvYuHew==
 
 unbox-primitive@^1.1.0:
   version "1.1.0"
